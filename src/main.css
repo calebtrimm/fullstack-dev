@@ -1,23 +1,33 @@
 body {
-    background-color: #ffffff;
-    margin: 0;
+  background-color: #ffffff;
+  margin: 0;
+  font-family: 'Raleway', 'serif';
+  /* font-weight: 100; */
+}
+
+p {
+  font-family: 'Roboto', 'sans-serif';
+}
+
+img {
+  /* border: 1px solid lightgray; */
 }
 
 .overlay {
-    z-index:50;
-    position: fixed;
-    left:0;
-    right:0;
-    top:0;
-    bottom:0;
-    background-color:rgba(0,0,0,0.5);
+  z-index: 50;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .popup {
-    z-index:100;
-    position: fixed;
-    top:200px;
-    left:200px;
-    right:200px;
-    background-color:white
+  z-index: 100;
+  position: fixed;
+  top: 200px;
+  left: 200px;
+  right: 200px;
+  background-color: white;
 }

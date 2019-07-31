@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import './main.css';
-import Navbar from './Navbar.jsx';
-import Sidebar from './Sidebar.jsx';
-// import SearchResults from './SearchResults'
+import Sidebar from './components/Sidebar.jsx';
+import styled from 'styled-components';
+import Navbar from './components/Navbar.jsx';
+import SearchResults from './components/SearchResults.jsx';
 
 const renderHome = () => {
   return (
     <>
       <Navbar />
-      <Sidebar />
-      hello world!
+      {/* <Sidebar /> */}
+      <SearchResults />
     </>
   );
 };
@@ -24,5 +25,4 @@ class App extends Component {
     );
   };
 }
-
 export default App;

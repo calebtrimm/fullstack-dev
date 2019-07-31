@@ -5,9 +5,9 @@ import styled from 'styled-components';
 class Sidebar extends Component {
   render = () => {
     return (
-      <div>
-        <h4>Filter Items</h4>
-      </div>
+      <Container>
+        <h4>filter items</h4>
+      </Container>
     );
   };
 }
@@ -18,4 +18,13 @@ const mapStateToProps = state => {
   };
 };
 
+const Container = styled.div`
+  background-color: white;
+  border: 1px solid lightgray;
+  width: 20vw;
+  height: 100vh;
+  position: absolute;
+  left: 0;
+  padding: 10vh 10px;
+`;
 export default connect(mapStateToProps)(Sidebar);

@@ -1,11 +1,16 @@
 import { createStore } from 'redux';
-import { initialItems } from './data';
-let initialState = {
+import { initialItems } from '../src/data.js';
+const initialState = {
   searchQuery: '',
-  allItems: initialItems
+  allItems: initialItems,
+  cart: []
 };
 
 let reducer = (state, action) => {
+  switch (action.type) {
+    case 'REFINE_SEARCH':
+      return { ...state, searchQuery: action.search };
+  }
   return state;
 };
 

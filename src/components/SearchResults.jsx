@@ -4,21 +4,35 @@ import Items from './Items.jsx';
 import styled from 'styled-components';
 
 class SearchResults extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      allItems: props.allItems
+    };
   }
+  componentDidMount = async () => {
+    const response = await fetch('/get-user-items');
+    console.log(response);
+    const body = await response.json();
+    console.log(body.newItems);
+    if (body.success) {
+      this.setState({ allItems: this.state.allItems.concat(body.newItems) });
+    }
+  };
   render = () => {
-    const results = this.props.allItems.filter(item => {
+    const results = this.state.allItems.filter(item => {
       return (
         item.name.toLowerCase().includes(this.props.query) ||
         item.name.includes(this.props.query)
       );
     });
+    console.log('results', results);
     return (
       <Container>
         {results.map(result => {
           return (
             <Items
+              key={result.id}
               itemName={result.name}
               id={result.id}
               src={result.src}
@@ -34,7 +48,8 @@ class SearchResults extends Component {
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 80vw;
   margin: 100px auto;
 `;

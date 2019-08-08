@@ -1,16 +1,13 @@
 body {
-  background-color: #ffffff;
   margin: 0;
-  font-family: 'Raleway', 'serif';
-  /* font-weight: 100; */
+  font-family: 'Roboto', 'sans-serif';
+  overflow-x: hidden;
+  height: 100vh;
+  background-color: #ebebeb;
 }
 
 p {
-  font-family: 'Roboto', 'sans-serif';
-}
-
-img {
-  /* border: 1px solid lightgray; */
+  font-family: 'Raleway', 'serif';
 }
 
 .overlay {
@@ -23,6 +20,10 @@ img {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+h1 {
+  margin-left: 5%;
+}
+
 .popup {
   z-index: 100;
   position: fixed;
@@ -30,4 +31,17 @@ img {
   left: 200px;
   right: 200px;
   background-color: white;
+}
+
+input {
+  border: none;
+}
+
+.spacer {
+  margin-bottom: 70px;
+}
+
+.Link {
+  text-decoration: none;
+  color: black;
 }

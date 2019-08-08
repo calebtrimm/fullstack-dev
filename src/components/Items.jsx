@@ -1,20 +1,55 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { toast, ToastContainer } from 'react-toastify';
+import { Slide } from 'react-toastify';
 
 class Items extends Component {
   constructor() {
     super();
   }
+  addToCart = async evt => {
+    evt.preventDefault();
+    const customToastId = '1';
+    const item = {
+      id: this.props.id,
+      name: this.props.itemName,
+      src: this.props.src,
+      description: this.props.description,
+      price: this.props.price,
+      seller: this.props.seller
+    };
+    toast(item.name + ' was added to cart', {
+      position: toast.POSITION.BOTTOM_CENTER,
+      hideProgressBar: true,
+      transition: Slide
+    });
+    const itemString = JSON.stringify(item);
+    console.log('form submitted');
+    let data = new FormData();
+    data.append('item', itemString);
+    console.log(itemString);
+    await fetch('/add-to-cart', {
+      method: 'POST',
+      body: data,
+      credentials: 'include'
+    });
+  };
   render = () => {
     return (
       <Card>
-        <Image src={this.props.src} />
+        <ImgContainer to={'/details/' + this.props.id}>
+          <Image src={this.props.src} />
+        </ImgContainer>
         <Price>${this.props.price}</Price>
         <Details>
-          <Name>{this.props.itemName}</Name>
+          <Link className="Link" to={'/details/' + this.props.id}>
+            <Name>{this.props.itemName}</Name>
+          </Link>
           <p>{this.props.description}</p>
         </Details>
-        <Button>Add to Cart</Button>
+        <Button onClick={this.addToCart}>Add to Cart</Button>
       </Card>
     );
   };
@@ -23,12 +58,13 @@ class Items extends Component {
 const Button = styled.button`
   display: inline-block;
   border: none;
-  padding: 0.5rem 2rem;
+  border-radius: 20px;
+  padding: 0.7rem 2rem;
   margin: 0;
   text-decoration: none;
-  background: #21c287;
+  background: #000000;
   color: #ffffff;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1rem;
   cursor: pointer;
   text-align: center;
@@ -37,29 +73,47 @@ const Button = styled.button`
 `;
 
 const Image = styled.img`
-  height: 200px;
+  height: 400px;
   object-fit: scale-down;
+  margin: auto;
+`;
+
+const ImgContainer = styled(Link)`
+  text-align: center;
 `;
 
 const Name = styled.h4`
   margin: 0;
+  &:hover {
+    text-decoration: underline;
+  }
 `;
 
 const Card = styled.div`
-  border: 1px solid lightgray;
+  border: 1px solid #e3e3e3;
+  background-color: #e3e3e3;
   flex-direction: column;
   padding: 2%;
-  flex-grow: 0.25;
+  flex-grow: 0.1;
   flex-basis: 16%;
   display: flex;
+  margin: 10px;
+  &:hover {
+    border: 1px solid #d3d3d3;
+  }
 `;
 
 const Details = styled(Card)`
-  border: none;
+  border: 1px solid #e3e3e3;
+  margin: 0;
+  padding: 0;
+  &:hover {
+    border: 1px solid #e3e3e3;
+  }
 `;
 
 const Price = styled.h3`
   font-family: 'Roboto', sans-serif;
-  margin: 5px;
+  margin: 5px 0;
 `;
-export default Items;
+export default connect()(Items);

@@ -4,7 +4,7 @@ const initialItems = [
     name: 'NIKE KYRIE 5',
     description: 'Size 12 US',
     price: 195.0,
-    seller: 'KYRIE IRVING',
+    seller: 'Kyrie Irving',
     src: 'imgs/nike-kyrie.png'
   },
   {
@@ -12,7 +12,7 @@ const initialItems = [
     name: 'NIKE EPIC REACT 2 FLYKNIT',
     description: 'Size 12 US',
     price: 150.0,
-    seller: 'Juan Lauv',
+    seller: 'Bob Ross',
     src: 'imgs/nike-epic.png'
   },
   {
@@ -20,7 +20,7 @@ const initialItems = [
     name: 'NIKE EXP',
     description: 'Size 12 US',
     price: 190.0,
-    seller: 'Usain Bolt',
+    seller: 'Martha Stewart',
     src: 'imgs/nike-exp.png'
   },
   {
@@ -28,7 +28,7 @@ const initialItems = [
     name: 'NIKE ZOOM KD12',
     description: 'Size 12 US',
     price: 230.0,
-    seller: 'Kevin Durant',
+    seller: 'Kanye West',
     src: 'imgs/nike-zoom.png'
   },
   {

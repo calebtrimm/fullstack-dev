@@ -1,3 +1,14 @@
+:root {
+  --green: #32df73;
+  --circular: 20px;
+  --pale-grey: #e7e7e7;
+  --hover-grey: #555555;
+  --dark-grey: #3e3e3e;
+}
+
+.rounded-button {
+}
+
 body {
   margin: 0;
   font-family: 'Roboto', 'sans-serif';

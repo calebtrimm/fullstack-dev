@@ -3,12 +3,38 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import CartItem from './CartItem.jsx';
 import { Link } from 'react-router-dom';
+import StripeButton from './StripeButton.jsx';
+
+const formatter = new Intl.NumberFormat('en-CAD', {
+  style: 'currency',
+  currency: 'CAD',
+  minimumFractionDigits: 2
+});
+
+const Total = styled.h4`
+  font-family: 'Roboto', sans-serif;
+`;
+
+const Div = styled.div`
+  width: 50%;
+  padding-right: 5%;
+  text-align: right;
+  margin: 3% auto;
+`;
+
+const Container = styled.div`
+  text-align: center;
+  width: 50%;
+  margin: 200px auto;
+  height: 80%;
+`;
 
 class Cart extends Component {
   constructor() {
     super();
     this.state = {
-      cart: []
+      cart: [],
+      orderTotal: 0
     };
   }
   componentDidMount = () => {
@@ -17,6 +43,7 @@ class Cart extends Component {
   };
   componentWillUnmount = () => {
     window.clearInterval(this.fetchInterval);
+    window.clearInterval(this.getCartTotal);
   };
   fetchCart = async () => {
     const response = await fetch('/get-cart');
@@ -24,6 +51,11 @@ class Cart extends Component {
     if (body.success) {
       this.setState({ cart: body.cart });
     }
+    let total = 0;
+    this.state.cart.map(item => {
+      total += item.price;
+    });
+    this.setState({ orderTotal: total });
   };
   render() {
     if (this.state.cart.length === 0) {
@@ -52,16 +84,13 @@ class Cart extends Component {
             />
           );
         })}
+        <Div>
+          <Total>Order Total: {formatter.format(this.state.orderTotal)}</Total>
+          <StripeButton total={this.state.orderTotal} />
+        </Div>
       </div>
     );
   }
 }
-
-const Container = styled.div`
-  text-align: center;
-  width: 50%;
-  margin: 200px auto;
-  height: 80%;
-`;
 
 export default connect()(Cart);

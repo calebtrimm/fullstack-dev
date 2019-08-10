@@ -139,7 +139,6 @@ const Box = styled.div`
   border: 1px solid #d3d3d3;
   border-right: none;
   border-left: none;
-  padding: 2% 0;
 `;
 
 const H4 = styled.h4`

@@ -64,7 +64,7 @@ class ImagePage extends Component {
 
 const Button = styled.button`
   border: none;
-  border-radius: 20px;
+  border-radius: var(--circular);
   height: 8%;
   width: 50%;
   margin: 0;

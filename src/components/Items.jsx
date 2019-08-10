@@ -58,7 +58,7 @@ class Items extends Component {
 const Button = styled.button`
   display: inline-block;
   border: none;
-  border-radius: 20px;
+  border-radius: var(--circular);
   padding: 0.7rem 2rem;
   margin: 0;
   text-decoration: none;

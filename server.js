@@ -1,18 +1,20 @@
-let express = require('express');
-let app = express();
+const express = require('express');
+const app = express();
 // multer
-let multer = require('multer');
-let upload = multer({
+const multer = require('multer');
+const upload = multer({
   dest: __dirname + '/imgs/'
 });
 app.use('/imgs/', express.static(__dirname + '/imgs'));
 // cookie-parser
-let cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 app.use(cookieParser());
-let bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+const stripe = require('stripe')('sk_test_hn6E4UrOxjretGtlHzuX1KyO00UJiT2v3H');
+
 // reload magic
-let reloadMagic = require('./reload-magic.js');
+const reloadMagic = require('./reload-magic.js');
 reloadMagic(app);
 let passwords = {};
 let sessions = {};
@@ -135,6 +137,25 @@ app.get('/get-user-items', (req, res) => {
     if (Object.keys(newItems).length > 0) {
       res.send({ success: true, newItems });
     } else res.send(JSON.stringify({ success: false }));
+  }
+});
+
+app.post('/save-stripe-token', (req, res) => {
+  (async () => {
+    const customer = await stripe.customers.create({
+      email: req.body.stripeEmail,
+      source: req.body.stripeToken
+    });
+    res.send({ customer });
+  })();
+});
+
+app.get('/clear-cart', (req, res) => {
+  const sessionId = req.cookies.sid;
+  const username = sessions[sessionId];
+  if (sessions[sessionId]) {
+    userCarts[username] = [];
+    console.log('user cart ', userCarts[username]);
   }
 });
 

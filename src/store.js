@@ -15,8 +15,6 @@ let reducer = (state, action) => {
       return { ...state, loggedIn: true, userId: action.userId };
     case 'LOGOUT':
       return { ...state, loggedIn: false };
-    // case 'ADD_ITEM':
-    //   return { ...state, allItems: state.allItems.concat(action.item) };
   }
   return state;
 };

@@ -66,34 +66,32 @@ const Input = styled.input`
   margin-top: 10px;
   width: 50%;
   background-color: transparent;
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid var(--pale-grey);
   ::placeholder {
-    color: #b7b7b7;
-  }
-  &:focus {
-    outline: none;
+    color: var(--pale-grey);
   }
   &:hover {
     &::placeholder {
       transition: 0.4s ease-in-out;
-      color: #3e3e3e;
+      color: var(--hover-grey);
     }
   }
   &:focus {
-    border-bottom: 1px solid #555555;
+    outline: none;
+    border-bottom: 1px solid var(--dark-grey);
   }
 `;
 
 const Button = styled(Input)`
-  background-color: #32df73;
+  background-color: var(--green);
   padding: 10px 20px;
-  border: 1px solid #32df73;
+  border: 1px solid var(--green);
+  border-radius: var(--circular);
   color: #ffffff;
-
   &:hover {
     background-color: transparent;
-    border: 1px solid #32df73;
-    color: #32df73;
+    border: 1px solid var(--green);
+    color: var(--green);
   }
 `;
 

@@ -74,7 +74,7 @@ const mapStateToProps = state => {
 const Counter = styled.div`
   display: inline-block;
   border-radius: 50%;
-  background-color: #32df73;
+  background-color: var(--green);
   width: 20px;
   text-align: center;
   color: #ffffff;
@@ -101,6 +101,9 @@ const SearchForm = styled.form`
   display: flex;
   justify-content: center;
   min-width: max-content;
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const Button = styled.img`
@@ -133,6 +136,9 @@ const Container = styled.div`
   justify-items: center;
   align-content: center;
   border-bottom: 1px solid lightgray;
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 `;
 
 const NavLink = styled(Link)`

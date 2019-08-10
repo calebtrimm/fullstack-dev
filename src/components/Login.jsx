@@ -91,15 +91,15 @@ const Input = styled.input`
 `;
 
 const Button = styled(Input)`
-  background-color: #32df73;
+  background-color: var(--green);
   padding: 10px 20px;
-  border: 1px solid #32df73;
+  border: 1px solid var(--green);
+  border-radius: var(--circular);
   color: #ffffff;
-
   &:hover {
     background-color: transparent;
-    border: 1px solid #32df73;
-    color: #32df73;
+    border: 1px solid var(--green);
+    color: var(--green);
   }
 `;
 

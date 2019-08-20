@@ -4,7 +4,8 @@ import initialItems from '../src/data.js';
 const initialState = {
   searchQuery: '',
   allItems: initialItems,
-  loggedIn: false
+  loggedIn: false,
+  signUp: true
 };
 
 let reducer = (state, action) => {
@@ -15,6 +16,10 @@ let reducer = (state, action) => {
       return { ...state, loggedIn: true, userId: action.userId };
     case 'LOGOUT':
       return { ...state, loggedIn: false };
+    case 'TOGGLE_FORM':
+      return { ...state, signUp: action.showForm };
+    case 'ADD_ITEM':
+      return { ...state, allItems: state.allItems.concat(action.item) };
   }
   return state;
 };

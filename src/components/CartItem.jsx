@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 const formatter = new Intl.NumberFormat('en-CAD', {
   style: 'currency',
@@ -21,32 +22,32 @@ const Price = styled.h3`
 `;
 
 const Button = styled.button`
-  position: relative;
-  background-color: transparent;
-  padding: 3px 0px;
-  left: 12%;
-  top: 30px;
-  width: 12%;
-  height: 5%;
-  border: 1px solid black;
-  border-radius: var(--circular);
+    position: relative;
+    background-color: transparent;
+    padding: 3px 0px;
+    left: 18%;
+    top: 30px;
+    width: 22%;
+    height: 5%;
+    border: none;
+}
   &:hover {
-    background-color: black;
-    color: white;
+    text-decoration: underline;
+    color: var(--hover-grey);
   }
 `;
 
 const Container = styled.div`
-  border-top: 1px solid var(--pale-grey);
-  border-bottom: 1px solid var(--pale-grey);
+  /* border-top: var(--subtle-border); */
+  border-bottom: var(--subtle-border);
   /* background-color: var(--pale-grey); */
   flex-direction: row;
-  width: 40%;
+  width: 85%;
   padding: 2%;
   flex-grow: 0.1;
   flex-basis: 16%;
   display: flex;
-  margin: 10px auto;
+  margin: 3% auto;
 `;
 const Image = styled.img`
   height: 100px;
@@ -90,17 +91,20 @@ class CartItem extends Component {
   };
   render() {
     return (
-      <>
-        <Container>
-          <Image src={'../' + this.props.src} />
-          <Details>
-            <Name>{this.props.name}</Name>
-            <p>{this.props.description}</p>
-          </Details>
-          <Button onClick={this.removeFromCart}>Remove Item</Button>
-          <Price>{formatter.format(this.props.price)}</Price>
-        </Container>
-      </>
+      <TransitionGroup>
+        <CSSTransition key={this.props.id} timeout={800} classNames="fade">
+          <Container>
+            <Image src={'../' + this.props.src} />
+            <Details>
+              <Name>{this.props.name}</Name>
+              <p>{this.props.description}</p>
+              <p>{this.props.quantity}</p>
+            </Details>
+            <Button onClick={this.removeFromCart}>Remove Item</Button>
+            <Price>{formatter.format(this.props.price)}</Price>
+          </Container>
+        </CSSTransition>
+      </TransitionGroup>
     );
   }
 }

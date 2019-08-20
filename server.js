@@ -24,12 +24,13 @@ let newItems = [];
 class Item {
   constructor(item) {
     const parsedItem = JSON.parse(item);
-    this.id = parsedItem.id;
+    this.id = Number(parsedItem.id);
     this.name = parsedItem.name;
     this.description = parsedItem.description;
     this.src = parsedItem.src;
-    this.price = parsedItem.price;
+    this.price = Number(parsedItem.price);
     this.seller = parsedItem.seller;
+    this.quantity = 1;
   }
 }
 
@@ -53,8 +54,6 @@ app.post('/login', upload.none(), (req, res) => {
 });
 
 app.post('/signup', upload.none(), (req, res) => {
-  if (req.body.username) {
-  }
   const username = req.body.username;
   const enteredPassword = req.body.password;
   if (passwords[username]) {
@@ -82,8 +81,10 @@ app.post('/sell-item', upload.single('img'), (req, res) => {
   const sessionId = req.cookies.sid;
   const username = sessions[sessionId];
   const item = req.body.item;
-  item.seller = username;
-  item.id = generateId();
+  console.log(item.seller);
+  if (!item.seller) {
+    item.seller = username;
+  }
   const newItem = new Item(item);
   console.log('new item', newItem);
   newItems.push(newItem);
@@ -121,7 +122,6 @@ app.get('/get-cart', (req, res) => {
   const sessionId = req.cookies.sid;
   const username = sessions[sessionId];
   if (sessions[sessionId]) {
-    // console.log('getting ', username + "'s cart: ", userCarts[username]);
     res.send(
       JSON.stringify({
         success: true,

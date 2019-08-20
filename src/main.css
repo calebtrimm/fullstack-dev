@@ -1,12 +1,11 @@
 :root {
-  --green: #32df73;
+  --highlight: #48d5e9;
+  --hover-highlight: #88f0ff;
   --circular: 20px;
   --pale-grey: #e7e7e7;
+  --subtle-border: 1px solid #d3d3d3;
   --hover-grey: #555555;
   --dark-grey: #3e3e3e;
-}
-
-.rounded-button {
 }
 
 body {
@@ -14,13 +13,19 @@ body {
   font-family: 'Roboto', 'sans-serif';
   overflow-x: hidden;
   height: 100vh;
-  background-color: #ebebeb;
+  background-color: #e8ecf0;
+  scroll-behavior: smooth;
 }
 
 p {
   font-family: 'Raleway', 'serif';
 }
 
+.title {
+  margin-bottom: 10%;
+  border-bottom: var(--subtle-border);
+  padding-bottom: 4%;
+}
 .overlay {
   z-index: 50;
   position: fixed;
@@ -31,10 +36,13 @@ p {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-h1 {
+/* h1 {
   margin-left: 5%;
-}
+} */
 
+#price {
+  width: 25%;
+}
 .popup {
   z-index: 100;
   position: fixed;
@@ -55,4 +63,60 @@ input {
 .Link {
   text-decoration: none;
   color: black;
+}
+
+/* enter */
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms linear;
+}
+
+/* exit */
+.fade-exit {
+  opacity: 1;
+}
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 0ms linear;
+}
+.fade-exit-done {
+  opacity: 0;
+}
+
+#return-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.7);
+  width: 50px;
+  height: 50px;
+  display: block;
+  text-decoration: none;
+  -webkit-border-radius: 35px;
+  border-radius: 35px;
+  display: none;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s ease;
+}
+#return-to-top i {
+  color: #fff;
+  margin: 0;
+  position: relative;
+  left: 16px;
+  top: 13px;
+  font-size: 19px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+#return-to-top:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+#return-to-top:hover i {
+  color: #fff;
+  top: 5px;
 }

@@ -91,7 +91,7 @@ const Name = styled.h4`
 
 const Card = styled.div`
   border: 1px solid #e3e3e3;
-  background-color: #e3e3e3;
+  background-color: #e0e4e8a6;
   flex-direction: column;
   padding: 2%;
   flex-grow: 0.1;

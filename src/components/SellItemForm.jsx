@@ -4,18 +4,19 @@ import { connect } from 'react-redux';
 import { toast, ToastContainer } from 'react-toastify';
 import { Slide } from 'react-toastify';
 
+const generateId = () => {
+  return '' + Math.floor(Math.random() * 100000000);
+};
+
 const FormInput = styled.input`
   font-size: 1.2rem;
   padding: 10px;
-  margin-bottom: 10%;
-  width: 100%;
+  margin-bottom: 5%;
+  width: 50%;
   background-color: transparent;
-  border-bottom: 1px solid #e7e7e7;
+  border: var(--subtle-border);
   ::placeholder {
     color: #b7b7b7;
-  }
-  &:focus {
-    outline: none;
   }
   &:hover {
     &::placeholder {
@@ -24,7 +25,10 @@ const FormInput = styled.input`
     }
   }
   &:focus {
-    border-bottom: 1px solid #555555;
+    border: 1px solid #555555;
+    outline: none;
+    width: 90%;
+    transition: 0.4s ease-in-out;
   }
 `;
 
@@ -34,43 +38,50 @@ const ImageInput = styled(FormInput)`
 `;
 
 const Button = styled(FormInput)`
-  background-color: var(--green);
+  background-color: black;
   padding: 10px 20px;
-  border: 1px solid var(--green);
+  border: 1px solid black;
   border-radius: var(--circular);
   color: #ffffff;
+  margin: 5% auto;
+  width: 40%;
   &:hover {
-    background-color: transparent;
-    border: 1px solid var(--green);
-    color: var(--green);
+    transition: 0.4s ease-in-out;
+    background-color: var(--dark-grey);
+    border: 1px solid var(--dark-grey);
+  }
+  &:focus {
+    width: 40%;
   }
 `;
 
 const Container = styled.div`
-  width: 30vw;
-  height: 60vh;
+  width: 40vw;
+  height: 90%;
   position: absolute;
-  top: 10%;
-  left: 0;
   right: 0;
   margin: auto;
-  padding: 40px 0;
+  padding-top: 5%;
   background-color: #ffffff;
+  opacity: 0.98;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const Form = styled.form`
-  width: 75%;
+  width: 90%;
   margin: auto;
-  padding: 20px;
 `;
 
-const Label = styled.label``;
+const Label = styled.h3``;
 
 const Header = styled.h1`
   font-family: 'Roboto', sans-serif;
   text-align: center;
-  margin: auto 0;
+  margin-bottom: 10%;
+`;
+
+const Spacer = styled.div`
+  margin-left: 3%;
 `;
 
 class SellItemForm extends Component {
@@ -79,7 +90,7 @@ class SellItemForm extends Component {
     this.state = {
       name: '',
       description: '',
-      price: '',
+      price: 0,
       image: ''
     };
   }
@@ -109,7 +120,7 @@ class SellItemForm extends Component {
       price: this.state.price,
       src: `imgs/${this.state.image.name}`,
       seller: '',
-      id: this.props.allItems.length
+      id: Number(this.props.allItems.length)
     };
     console.log(item);
     console.log('form submitted');
@@ -126,43 +137,61 @@ class SellItemForm extends Component {
       hideProgressBar: true,
       transition: Slide
     });
+    this.props.dispatch(
+      {
+        type: 'ADD_ITEM',
+        item: item
+      },
+      console.log('adding item')
+    );
   };
   render = () => {
     return (
       <Container>
-        <Header>Sell an Item</Header>
+        <Header>Sell Your Shoes</Header>
         <Form onSubmit={this.handleSubmit}>
-          <FormInput
-            required
-            id="name"
-            type="text"
-            placeholder="What are you selling?"
-            onChange={this.handleProductChange}
-            value={this.state.name}
-          />
-          <FormInput
-            required
-            id="description"
-            type="text"
-            placeholder="Describe your item..."
-            onChange={this.handleDescription}
-            value={this.state.description}
-          />
-          <Label>Price</Label>
-          <FormInput
-            required
-            id="price"
-            type="number"
-            placeholder="0.00"
-            onChange={this.handlePrice}
-            value={this.state.price}
-          />
-          <ImageInput
-            required
-            id="image"
-            type="file"
-            onChange={this.handleImage}
-          />
+          <Spacer>
+            <Label>Product</Label>
+            <FormInput
+              required
+              id="name"
+              type="text"
+              placeholder="What are you selling?"
+              onChange={this.handleProductChange}
+              value={this.state.name}
+            />
+          </Spacer>
+          <Spacer>
+            <Label>Description</Label>
+            <FormInput
+              required
+              id="description"
+              type="text"
+              placeholder="Describe your item..."
+              onChange={this.handleDescription}
+              value={this.state.description}
+            />
+          </Spacer>
+          <Spacer>
+            <Label>Price</Label>
+            <FormInput
+              required
+              id="price"
+              type="number"
+              placeholder="0.00"
+              onChange={this.handlePrice}
+              value={this.state.price}
+            />
+          </Spacer>
+          <Spacer>
+            <Label>Upload an image of your product</Label>
+            <ImageInput
+              required
+              id="image"
+              type="file"
+              onChange={this.handleImage}
+            />
+          </Spacer>
           <Button type="submit" />
         </Form>
       </Container>

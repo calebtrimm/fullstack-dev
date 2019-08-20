@@ -10,7 +10,7 @@ const initialItems = [
   {
     id: 1,
     name: 'NIKE EPIC REACT 2 FLYKNIT',
-    description: 'Size 12 US',
+    description: 'Size 11 US',
     price: 150.0,
     seller: 'Bob Ross',
     src: 'imgs/nike-epic.png'
@@ -18,7 +18,7 @@ const initialItems = [
   {
     id: 2,
     name: 'NIKE EXP',
-    description: 'Size 12 US',
+    description: 'Size 10 US',
     price: 190.0,
     seller: 'Martha Stewart',
     src: 'imgs/nike-exp.png'
@@ -34,7 +34,7 @@ const initialItems = [
   {
     id: 4,
     name: 'NIKE AIR FORCE 1',
-    description: 'Size 12 US',
+    description: 'Size 11 US',
     price: 130.0,
     seller: 'Joe Mohma',
     src: 'imgs/nike-air.png'
@@ -42,7 +42,7 @@ const initialItems = [
   {
     id: 5,
     name: 'NIKE SB AIR MAX',
-    description: 'Size 12 US',
+    description: 'Size 9 US',
     price: 230.0,
     seller: 'Juan Lauv',
     src: 'imgs/nike-sb-air-max.png'
@@ -50,7 +50,7 @@ const initialItems = [
   {
     id: 6,
     name: 'NIKE EPIC REACT 2',
-    description: 'Size 12 US',
+    description: 'Size 13 US',
     price: 190.0,
     seller: 'Usain Bolt',
     src: 'imgs/nike-epic-react.png'

@@ -74,7 +74,7 @@ const mapStateToProps = state => {
 const Counter = styled.div`
   display: inline-block;
   border-radius: 50%;
-  background-color: var(--green);
+  background-color: var(--highlight);
   width: 20px;
   text-align: center;
   color: #ffffff;

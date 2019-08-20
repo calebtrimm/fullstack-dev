@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 class Login extends Component {
   constructor() {
     super();
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      showForm: false
     };
   }
+  handleForm = event => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: 'TOGGLE_FORM',
+      showForm: !this.state.showForm
+    });
+  };
   handleUsernameChange = event => {
     console.log('new username', event.target.value);
     this.setState({ username: event.target.value });
@@ -59,8 +68,10 @@ class Login extends Component {
         </div>
         <div>
           {' '}
-          <Button type="submit" />
+          <Button type="submit" value="Log In" />
         </div>
+        Don't have an account?{' '}
+        <Signup onClick={this.handleForm}>Sign Up</Signup>
       </form>
     );
   };
@@ -68,7 +79,7 @@ class Login extends Component {
 
 const Input = styled.input`
   font-size: 1.2rem;
-  padding: 10px;
+  padding: 10% 10px 10px 10px;
   margin-top: 10px;
   width: 50%;
   background-color: transparent;
@@ -91,16 +102,27 @@ const Input = styled.input`
 `;
 
 const Button = styled(Input)`
-  background-color: var(--green);
+  margin-top: 20px;
+  background-color: var(--highlight);
   padding: 10px 20px;
-  border: 1px solid var(--green);
+  border: 1px solid var(--highlight);
   border-radius: var(--circular);
   color: #ffffff;
   &:hover {
-    background-color: transparent;
-    border: 1px solid var(--green);
-    color: var(--green);
+    background-color: var(--hover-highlight);
+    border: 1px solid var(--hover-highlight);
+  }
+  &:focus {
+    border: 1px solid var(--highlight);
   }
 `;
+
+const Signup = styled.button`
+margin-top: 20px;
+    -webkit-appearance: none;
+    border: none;
+    text-decoration: underline;
+    background: none;
+}`;
 
 export default connect()(Login);

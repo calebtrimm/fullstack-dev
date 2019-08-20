@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+
 class Signup extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      showForm: true
     };
   }
-
+  handleForm = event => {
+    event.preventDefault();
+    this.props.dispatch({
+      type: 'TOGGLE_FORM',
+      showForm: !this.state.showForm
+    });
+  };
   handleUsernameChange = event => {
     this.setState({ username: event.target.value });
   };
@@ -40,6 +48,7 @@ class Signup extends Component {
       <form onSubmit={this.handleSubmit}>
         <div>
           <Input
+            required
             type="text"
             placeholder="username"
             onChange={this.handleUsernameChange}
@@ -47,13 +56,15 @@ class Signup extends Component {
         </div>
         <div>
           <Input
+            required
             type="password"
             placeholder="password"
             onChange={this.handlePasswordChange}
           />
           <div>
-            <Button type="submit" />
+            <Button type="submit" value="Sign Up" />
           </div>
+          Already a user? <Login onClick={this.handleForm}>Log In</Login>
         </div>
       </form>
     );
@@ -62,37 +73,50 @@ class Signup extends Component {
 
 const Input = styled.input`
   font-size: 1.2rem;
-  padding: 10px;
+  padding: 10% 10px 10px 10px;
   margin-top: 10px;
   width: 50%;
   background-color: transparent;
-  border-bottom: 1px solid var(--pale-grey);
+  border-bottom: 1px solid #e7e7e7;
   ::placeholder {
-    color: var(--pale-grey);
+    color: #b7b7b7;
+  }
+  &:focus {
+    outline: none;
   }
   &:hover {
     &::placeholder {
       transition: 0.4s ease-in-out;
-      color: var(--hover-grey);
+      color: #3e3e3e;
     }
   }
   &:focus {
-    outline: none;
-    border-bottom: 1px solid var(--dark-grey);
+    border-bottom: 1px solid #555555;
   }
 `;
 
 const Button = styled(Input)`
-  background-color: var(--green);
+  margin-top: 20px;
+  background-color: var(--highlight);
   padding: 10px 20px;
-  border: 1px solid var(--green);
+  border: 1px solid var(--highlight);
   border-radius: var(--circular);
   color: #ffffff;
   &:hover {
-    background-color: transparent;
-    border: 1px solid var(--green);
-    color: var(--green);
+    background-color: var(--hover-highlight);
+    border: 1px solid var(--hover-highlight);
   }
+  &:focus {
+    border: 1px solid var(--highlight);
+  }
+`;
+
+const Login = styled.button`
+  margin-top: 20px;
+  -webkit-appearance: none;
+  border: none;
+  text-decoration: underline;
+  background: none;
 `;
 
 export default connect()(Signup);

@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import ModalImage from 'react-modal-image';
 import styled from 'styled-components';
 import { toast, ToastContainer } from 'react-toastify';
 import { Slide } from 'react-toastify';
 
-class ImagePage extends Component {
+class ItemPage extends Component {
   constructor() {
     super();
   }
@@ -65,7 +64,7 @@ class ImagePage extends Component {
 const Button = styled.button`
   border: none;
   border-radius: var(--circular);
-  height: 8%;
+  height: 4%;
   width: 50%;
   margin: 0;
   text-decoration: none;
@@ -84,12 +83,11 @@ const Button = styled.button`
 
 const Details = styled.h4`
   font-family: 'Roboto', sans-serif;
-  margin: 10px;
+  margin-left: 2%;
 `;
 
 const Name = styled.h1`
   font-family: 'Roboto', sans-serif;
-  margin: auto 0;
 `;
 
 const Container = styled.div`
@@ -105,7 +103,13 @@ const Box = styled.div`
 `;
 
 const Info = styled(Box)`
-  margin-top: 10%;
+  height: 100vh;
+  width: 30%;
+  position: fixed;
+  right: 0;
+  padding: 15% 3% 0 3%;
+  background-color: #ffffff;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.1);
 `;
 
-export default connect()(ImagePage);
+export default connect()(ItemPage);

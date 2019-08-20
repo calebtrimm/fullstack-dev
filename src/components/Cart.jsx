@@ -16,7 +16,6 @@ const Total = styled.h4`
 `;
 
 const Div = styled.div`
-  width: 50%;
   padding-right: 5%;
   text-align: right;
   margin: 3% auto;

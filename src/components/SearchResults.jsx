@@ -7,15 +7,15 @@ class SearchResults extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      allItems: props.allItems
+      allItems: this.props.allItems
     };
   }
   componentDidMount = async () => {
     const response = await fetch('/get-user-items');
     console.log(response);
     const body = await response.json();
-    console.log(body.newItems);
     if (body.success) {
+      console.log('new items', body.newItems);
       this.setState({ allItems: this.state.allItems.concat(body.newItems) });
     }
   };

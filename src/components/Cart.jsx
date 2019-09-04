@@ -42,7 +42,6 @@ class Cart extends Component {
   };
   componentWillUnmount = () => {
     window.clearInterval(this.fetchInterval);
-    window.clearInterval(this.getCartTotal);
   };
   fetchCart = async () => {
     const response = await fetch('/get-cart');

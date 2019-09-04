@@ -38,9 +38,7 @@ const Button = styled.button`
 `;
 
 const Container = styled.div`
-  /* border-top: var(--subtle-border); */
   border-bottom: var(--subtle-border);
-  /* background-color: var(--pale-grey); */
   flex-direction: row;
   width: 85%;
   padding: 2%;

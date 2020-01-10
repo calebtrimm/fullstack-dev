@@ -1,5 +1,7 @@
-To start the server, run `nodemon server.js`
+My final project with Concordia Bootcamps.
 
-Modify the `server.js` file to add endpoints
+I've created a mock e-commerce site with log-in, shopping cart and stripe fucntionality.
 
-The frontend code goes in the `/src` directory
+
+You can watch a video demonstration here:
+https://youtu.be/6DgGNVC2g9w
